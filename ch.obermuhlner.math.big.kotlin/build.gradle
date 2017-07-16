@@ -41,6 +41,7 @@ artifacts {
     archives javadocJar
 }
 
+/*
 signing {
     sign configurations.archives
 }
@@ -89,3 +90,4 @@ uploadArchives {
 	    }
 	}
 }
+*/
