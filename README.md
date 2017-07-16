@@ -24,6 +24,8 @@ This library depends on the [big-math](https://github.com/eobermuhlner/big-math)
 
 ### Usage in Kotlin
 
+The usage of `BigFloat` follows the same rules as described in the [big-math](https://github.com/eobermuhlner/big-math/blob/master/README.md#Usage) library.
+
 ```kotlin
 import ch.obermuhlner.math.big.BigFloat
 import ch.obermuhlner.math.big.kotlin.*
