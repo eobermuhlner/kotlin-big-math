@@ -1,4 +1,4 @@
-package ch.obermuhlner.math.big.kotlin
+package ch.obermuhlner.math.big.kotlin.bigfloat
 
 import java.math.BigDecimal
 

@@ -1,8 +1,8 @@
-package ch.obermuhlner.math.big.kotlin.example
+package ch.obermuhlner.math.big.kotlin.example.bigfloat
 
 import ch.obermuhlner.math.big.BigFloat
 import ch.obermuhlner.math.big.BigFloat.*
-import ch.obermuhlner.math.big.kotlin.*
+import ch.obermuhlner.math.big.kotlin.bigfloat.*
 
 fun main(args: Array<String>) {
 	simpleExample()
