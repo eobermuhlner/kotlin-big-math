@@ -14,6 +14,13 @@ It provides two different approaches to do the calculations
 - `BigDecimal` + `DefaultBigDecimalMath` : recommended approach
 - `BigFloat` : experimental approach
 
+The [big-math](https://github.com/eobermuhlner/big-math) library
+provides advanced math functions (`pow`, `sqrt`, `log`, `sin`, ...).
+
+The `kotlin-big-math` library enhances the `big-math` library with the kotlin specific operators and infix methods.
+Additionally it solves several of the problems that the standard kotlib library has when using `BigDecimal`.
+ 
+
 # BigDecimal + DefaultBigDecimalMath
 
 By using the following imports you can use the standard `BigDecimal` class 
@@ -269,6 +276,76 @@ This produces the following output:
 3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117068
 ```
 
+## Comparison with standard kotlin library
+
+The standard kotlin library already provides operators for `BigDecimal` but there are several problems with this solution.
+
+### Standard Kotlin: Precision problem in division
+
+The precision of the standard operators is determined from the arguments.
+In the case of the division this can lead to unexpected results!
+
+```kotlin
+    // Code example with standard kotlin library (without kotlin-big-math)
+    
+    val v = valueOf(2) / valueOf(3)
+    println(v) // prints: 1 !!!
+```
+
+This problem is solved in `kotlin-big-math` because the precision is specified outside the function call.
+```kotlin
+    // Code example with kotlin-big-math
+
+    val v = valueOf(2) / valueOf(3)
+    println(v) // prints: 0.6666666666666666666666666666666667
+```
+
+### Standard Kotlin: Missing `valueOf(Int)` function
+
+The Java `BigDecimal` class has two overloaded `valueOf()` functions for the types `Double` and `Long` but not for `Int`. 
+```kotlin
+    // Code example with standard kotlin library (without kotlin-big-math)
+    
+    val n = 2
+    val v0 = valueOf(n) // Compile Error!
+```
+This code does not compile but gives the following error:
+```
+Compile Error: None of the following functions can be called with the arguments supplied.
+   valueOf(Double) defined in java.math.BigDecimal
+   valueOf(Long) defined in java.math.BigDecimal
+```
+
+This problem is solved in `kotlin-big-math` by providing a `fun valueOf(Int): BigDecimal`.
+```kotlin
+    // Code example with kotlin-big-math
+
+    val n = 2
+    val v = valueOf(n)
+```
+
+### Standard Kotlin: Missing overloaded operators for Int, Double, Long
+ 
+The standard kotlin library does not provide overloaded operators for mixing `Int`, `Double`, `Long` with `BigDecimal`.
+This leads to unnecessary clutter:
+```kotlin
+    // Code example with standard kotlin library (without kotlin-big-math)
+    
+    val v1 = valueOf(2)
+    val v2 = v1 * valueOf(3)
+    val v3 = valueOf(4) * v1
+```
+
+This problem is solved in `kotlin-big-math` by providing a overloaded operators where one argument is `Int`, `Double` or `Long`.
+```kotlin
+    // Code example with kotlin-big-math
+
+    val v1 = valueOf(2)
+    val v2 = v1 * 3
+    val v3 = 4.0 * v1
+```
+
+
 ## Using kotlin-big-math in your projects
 
 To use the kotlin library you can either download the newest version of the .jar file from the
@@ -283,7 +360,7 @@ in your build script (please verify the version number to be the newest release)
 <dependency>
     <groupId>ch.obermuhlner</groupId>
     <artifactId>kotlin-big-math</artifactId>
-    <version>0.0.1</version>
+    <version>2.3.0</version>
 </dependency>
 ```
 
@@ -295,6 +372,6 @@ repositories {
 }
 
 dependencies {
-  compile 'ch.obermuhlner:kotlin-big-math:0.0.1'
+  compile 'ch.obermuhlner:kotlin-big-math:2.3.0'
 }
 ```
