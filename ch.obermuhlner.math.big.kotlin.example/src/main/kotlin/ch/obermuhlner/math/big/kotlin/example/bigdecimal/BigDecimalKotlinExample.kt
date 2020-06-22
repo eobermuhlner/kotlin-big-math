@@ -7,16 +7,35 @@ import ch.obermuhlner.math.big.kotlin.bigdecimal.*
 
 fun main(args: Array<String>) {
 	simpleExample()
+	valueOfExample()
 	createLocalMathContextExample()
 	withLocalMathContextExample()
 	piChudnovskyExample()
 }
 
 fun simpleExample() {
-	val v1 = valueOf(2) / 3
-
+	val v1 = valueOf(2) + valueOf(3)
 	println(v1)
+
+	val v2 = valueOf(2) / 3
+	println(v2)
+
+	val v3 = v2 * 2
+	println(v3)
+
+	var v4 = valueOf(0.123456)
+	for (i in 0..20) {
+		v4 = v4 * valueOf(0.345678)
+		println(v4)
+	}
 }
+
+fun valueOfExample() {
+	val v1 = valueOf(1)
+	val v2 = valueOf(2L)
+	val v3 = valueOf(3.0)
+}
+
 
 fun createLocalMathContextExample() {
 	println("Pi[default]: " + pi())

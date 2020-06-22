@@ -12,9 +12,9 @@ repositories {
 }
 
 dependencies {
-	implementation group: 'ch.obermuhlner', name: 'big-math', version: '2.2.1.CONTEXT'
+	implementation group: 'ch.obermuhlner', name: 'big-math', version: '2.3.0'
 
-	//implementation group: 'ch.obermuhlner', name: 'big-math-kotlin', version: '0.0.1'
+	//implementation group: 'ch.obermuhlner', name: 'big-math-kotlin', version: '2.3.0'
 	implementation project(':ch.obermuhlner.math.big.kotlin')
 
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:"
